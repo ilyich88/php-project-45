@@ -11,5 +11,10 @@
             "email": "iyich88@gmail.com"
         }
     ],
+    "description": "hexlet php-project-45",
+    "license": "MIT",
+    "bin": [
+        "bin/brain-games"
+    ],
     "require": {}
 }
