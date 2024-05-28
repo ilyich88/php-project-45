@@ -12,7 +12,7 @@ function evenParity()
     line("Hello, %s!", $name);
     line('Answer "yes" if the number is even, otherwise answer "no".');
     for ($i = 0; $i < 3; $i++) {
-        $num = rand(0, 10);
+        $num = rand(0, 100);
         line("Question: $num");
         $answer = prompt('Your answer');
         if ($num % 2 === 0) {
