@@ -6,11 +6,11 @@ use function Brain\Games\Engine\playGameAndShowResult;
 
 function parityCheck()
 {
-    $description = 'Answer "yes" if the number is even, otherwise answer "no".';
+    $description = "Answer 'yes' if the number is even, otherwise answer 'no'.";
     $gameFunction = function () {
         $min = 0;
         $max = 99;
-        $value = rand($min, $max);
+        $value = random_int($min, $max);
         $rightAnswer = $value % 2 === 0 ? 'yes' : 'no';
         return [$value, $rightAnswer];
     };
