@@ -7,3 +7,6 @@
 
 ### brain-even
 https://asciinema.org/a/n7akKGRf4HRkQFEkjj93zoRYA
+
+### brain-calc
+https://asciinema.org/a/xxoQylx6IWNcRyjnI6KCofhZt
