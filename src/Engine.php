@@ -7,7 +7,7 @@ use function cli\prompt;
 
 function playGameAndShowResult(string $description, callable $gameFunction)
 {
-    line("Welcome to the Brain Game!");
+    line("Welcome to the Brain Games!");
     $name = prompt('May I have your name?');
     line("Hello, %s!", $name);
     line($description);
