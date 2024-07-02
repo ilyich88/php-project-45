@@ -10,7 +10,7 @@ function findTheMissingElement()
     $gameFunction = function () {
         $firstElement = random_int(1, 100);
         $stepOfProgression = random_int(-5, 5);
-        $progressionArray[] = $firstElement;
+        $progressionArray = [$firstElement];
         for ($i = 1; $i < 10; $i++) {
             $progressionArray[$i] = $progressionArray[$i - 1] + $stepOfProgression;
         }
