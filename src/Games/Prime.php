@@ -4,7 +4,7 @@ namespace Brain\Games\Prime;
 
 use function Brain\Games\Engine\playGameAndShowResult;
 
-function isPrime($number)
+function isPrime(int $number):bool
 {
     $devisor = 2;
     while (($devisor * $devisor <= $number) && ($number % $devisor !== 0)) {
