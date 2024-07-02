@@ -6,7 +6,7 @@ use function Brain\Games\Engine\playGameAndShowResult;
 
 function parityCheck()
 {
-    $description = "Answer 'yes' if the number is even, otherwise answer 'no'.";
+    $description = 'Answer "yes" if the number is even, otherwise answer "no".';
     $gameFunction = function () {
         $min = 0;
         $max = 99;
