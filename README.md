@@ -23,7 +23,7 @@ Games:
 ## Setup
 
 ```bash
-git clone https://github.com/ilyich88/php-project-45.git
+git clone https://github.com/ilyich88/brain-games.git
 cd brain-games
 make install
 ```
