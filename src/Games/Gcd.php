@@ -30,10 +30,9 @@ function findGcd(int $firstNum, int $secondNum): int
             $secondNum = $secondNum % $firstNum;
         }
         if ($firstNum !== 0) {
-            $result = $firstNum;
+            return $firstNum;
         } else {
-            $result = $secondNum;
+            return $secondNum;
         }
     }
-    return $result;
 }
