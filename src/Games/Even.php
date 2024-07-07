@@ -1,19 +1,25 @@
 <?php
 
-namespace Brain\Games\Even;
+namespace Brain\Games\Games\Even;
 
 use function Brain\Games\Engine\playGameAndShowResult;
 
-function parityCheck()
+const MIN = 0;
+const MAX = 99;
+
+function startGameEven()
 {
     $description = 'Answer "yes" if the number is even, otherwise answer "no".';
     $gameFunction = function () {
-        $min = 0;
-        $max = 99;
-        $value = random_int($min, $max);
-        $rightAnswer = $value % 2 === 0 ? 'yes' : 'no';
+        $value = random_int(MIN, MAX);
+        $rightAnswer = evenParity($value);
         return [$value, $rightAnswer];
     };
 
     playGameAndShowResult($description, $gameFunction);
+}
+
+function evenParity(int $num)
+{
+    return $num % 2 === 0 ? 'yes' : 'no';
 }

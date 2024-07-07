@@ -1,32 +1,39 @@
 <?php
 
-namespace Brain\Games\Gcd;
+namespace Brain\Games\Games\Gcd;
 
 use function Brain\Games\Engine\playGameAndShowResult;
 
-function findGcd()
+const MIN = 1;
+const MAX = 100;
+
+function startGameGcd()
 {
     $description = 'Find the greatest common divisor of given numbers.';
     $gameFunction = function () {
-        $min = 2;
-        $max = 100;
-        $firstNum = random_int($min, $max);
-        $secondNum = random_int($min, $max);
+        $firstNum = random_int(MIN, MAX);
+        $secondNum = random_int(MIN, MAX);
         $value = "{$firstNum} {$secondNum}";
-        while ($firstNum !== 0 and $secondNum !== 0) {
-            if ($firstNum > $secondNum) {
-                $firstNum = $firstNum % $secondNum;
-            } else {
-                $secondNum = $secondNum % $firstNum;
-            }
-            if ($firstNum !== 0) {
-                $rightAnswer = $firstNum;
-            } else {
-                $rightAnswer = $secondNum;
-            }
-        }
+        $rightAnswer = findGcd($firstNum, $secondNum);
         return [$value, (string) $rightAnswer];
     };
 
     playGameAndShowResult($description, $gameFunction);
+}
+
+function findGcd(int $firstNum, int $secondNum): int
+{
+    while ($firstNum !== 0 and $secondNum !== 0) {
+        if ($firstNum > $secondNum) {
+            $firstNum = $firstNum % $secondNum;
+        } else {
+            $secondNum = $secondNum % $firstNum;
+        }
+        if ($firstNum !== 0) {
+            $result = $firstNum;
+        } else {
+            $result = $secondNum;
+        }
+    }
+    return $result;
 }

@@ -1,10 +1,7 @@
 {
     "name": "hexlet/code",
     "autoload": {
-        "psr-4": {
-            "Hexlet\\Code\\": "src/"
-        },
-        "files": [
+            "files": [
             "src/Cli.php",
             "src/Engine.php",
             "src/Games/Even.php",

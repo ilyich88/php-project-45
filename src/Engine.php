@@ -11,17 +11,22 @@ function playGameAndShowResult(string $description, callable $gameFunction)
     $name = prompt('May I have your name?');
     line("Hello, %s!", $name);
     line($description);
-    $maxRound = 3;
-    for ($roundNum = 0; $roundNum < $maxRound; $roundNum++) {
+    define("MAX_ROUND", 3);
+    $gameStatus = true;
+    for ($roundNum = 0; ($roundNum < MAX_ROUND) && $gameStatus; $roundNum++) {
         [$value, $rightAnswer] = $gameFunction();
         line("Question: $value");
         $answer = prompt('Your answer');
         if ($answer === $rightAnswer) {
             line('Correct!');
         } else {
-            return line("'{$answer}' is wrong answer ;(. Correct answer was '{$rightAnswer}'.
-            \rLet's try again, {$name}!");
+            line("'{$answer}' is wrong answer ;(. Correct answer was '{$rightAnswer}'.");
+            $gameStatus = false;
         }
     }
-    line("Congratulations, %s!", $name);
+    if ($gameStatus) {
+        line("Congratulations, %s!", $name);
+    } else {
+        line("Let's try again, {$name}!");
+    }
 }
