@@ -21,9 +21,8 @@ function startGameGcd()
     playGameAndShowResult($description, $gameFunction);
 }
 
-function findGcd(int $firstNum, int $secondNum): int
+function findGcd(int $firstNum, int $secondNum)
 {
-    $result = 0;
     while ($firstNum !== 0 and $secondNum !== 0) {
         if ($firstNum > $secondNum) {
             $firstNum = $firstNum % $secondNum;
