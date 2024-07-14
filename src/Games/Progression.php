@@ -34,11 +34,11 @@ function startGameProgression()
 
 function findTheMissingElement(array $numberList, int $step)
 {
-    $missingElemIndex = array_search('..', $numberList);
+    $missingElemIndex = array_search('..', $numberList, true);
     if ($missingElemIndex === 0) {
         $result = $numberList[$missingElemIndex + 1] - $step;
     } else {
-        $result = $numberList[$missingElemIndex - 1] + $step;
+        $result = $numberList[(int) $missingElemIndex - 1] + $step;
     }
     return $result;
 }

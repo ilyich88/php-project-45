@@ -26,18 +26,16 @@ function startGameCalc()
     playGameAndShowResult($name, $gameFunction);
 }
 
-function calculateExpression(int $operand1, string $operator, int $operand2)
+function calculateExpression(int $operand1, string $operator, int $operand2): int
 {
     switch ($operator) {
         case '+':
-            $result = $operand1 + $operand2;
-            break;
+            return $operand1 + $operand2;
         case '-':
-            $result = $operand1 - $operand2;
-            break;
+            return $operand1 - $operand2;
         case '*':
-            $result = $operand1 * $operand2;
-            break;
+            return $operand1 * $operand2;
+        default:
+            return null;
     }
-    return $result;
 }
