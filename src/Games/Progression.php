@@ -3,34 +3,42 @@
 namespace Brain\Games\Games\Progression;
 
 use function Brain\Games\Engine\playGameAndShowResult;
+use function Brain\Games\Engine\showGreetingAndGetName;
 
-const MIN_NUM = 1;
-const MAX_NUM = 100;
+use const Brain\Games\Engine\MIN_NUMBER;
+use const Brain\Games\Engine\MAX_NUMBER;
+
 const MIN_STEP = -5;
 const MAX_STEP = 5;
 
 function startGameProgression()
 {
     $description = 'What number is missing in the progression?';
+    $name = showGreetingAndGetName($description);
     $gameFunction = function () {
-        $firstElement = random_int(MIN_NUM, MAX_NUM);
+        $firstElement = random_int(MIN_NUMBER, MAX_NUMBER);
         $stepOfProgression = random_int(MIN_STEP, MAX_STEP);
-        [$value, $rightAnswer] = findTheMissingElement($firstElement, $stepOfProgression);
+        $progressionArray = [$firstElement];
+        for ($i = 1; $i < 10; $i++) {
+            $progressionArray[$i] = $progressionArray[$i - 1] + $stepOfProgression;
+        }
+        $missingElemIndex = array_rand($progressionArray);
+        $progressionArray[$missingElemIndex] = '..';
+        $value = implode(' ', $progressionArray);
+        $rightAnswer = findTheMissingElement($progressionArray, $stepOfProgression);
         return [$value, (string) $rightAnswer];
     };
 
-    playGameAndShowResult($description, $gameFunction);
+    playGameAndShowResult($name, $gameFunction);
 }
 
-function findTheMissingElement(int $firstElement, int $stepOfProgression)
+function findTheMissingElement(array $numberList, int $step)
 {
-    $progressionArray = [$firstElement];
-    for ($i = 1; $i < 10; $i++) {
-        $progressionArray[$i] = $progressionArray[$i - 1] + $stepOfProgression;
+    $missingElemIndex = array_search('..', $numberList);
+    if ($missingElemIndex === 0) {
+        $result = $numberList[$missingElemIndex + 1] - $step;
+    } else {
+        $result = $numberList[$missingElemIndex - 1] + $step;
     }
-    $missingElemIndex = array_rand($progressionArray);
-    $rightAnswer = $progressionArray[$missingElemIndex];
-    $progressionArray[$missingElemIndex] = '..';
-    $value = implode(' ', $progressionArray);
-    return [$value, $rightAnswer];
+    return $result;
 }

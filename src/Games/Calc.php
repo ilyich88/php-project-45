@@ -3,39 +3,41 @@
 namespace Brain\Games\Games\Calc;
 
 use function Brain\Games\Engine\playGameAndShowResult;
+use function Brain\Games\Engine\showGreetingAndGetName;
 
-const MIN = 0;
-const MAX = 99;
+use const Brain\Games\Engine\MIN_NUMBER;
+use const Brain\Games\Engine\MAX_NUMBER;
 
 function startGameCalc()
 {
     $description = 'What is the result of the expression?';
+    $name = showGreetingAndGetName($description);
     $gameFunction = function () {
-        $firstNum = random_int(MIN, MAX);
-        $secondNum = random_int(MIN, MAX);
-        [$value, $rightAnswer] = calculateExpression($firstNum, $secondNum);
+        $firstNum = random_int(MIN_NUMBER, MAX_NUMBER);
+        $secondNum = random_int(MIN_NUMBER, MAX_NUMBER);
+        $operationsList = ['+', '-', '*'];
+        $randIndex = array_rand($operationsList);
+        $operator = $operationsList[$randIndex];
+        $value = "{$firstNum} {$operator} {$secondNum}";
+        $rightAnswer = calculateExpression($firstNum, $operator, $secondNum);
         return [$value, (string) $rightAnswer];
     };
 
-    playGameAndShowResult($description, $gameFunction);
+    playGameAndShowResult($name, $gameFunction);
 }
 
-function calculateExpression(int $firstNum, int $secondNum)
+function calculateExpression(int $operand1, string $operator, int $operand2)
 {
-    $operationsList = ['+', '-', '*'];
-    $randIndex = array_rand($operationsList);
-    $operation = $operationsList[$randIndex];
-    $value = "{$firstNum} {$operation} {$secondNum}";
-    switch ($operation) {
+    switch ($operator) {
         case '+':
-            $rightAnswer = $firstNum + $secondNum;
+            $result = $operand1 + $operand2;
             break;
         case '-':
-            $rightAnswer = $firstNum - $secondNum;
+            $result = $operand1 - $operand2;
             break;
         case '*':
-            $rightAnswer = $firstNum * $secondNum;
+            $result = $operand1 * $operand2;
             break;
     }
-    return [$value, $rightAnswer];
+    return $result;
 }
