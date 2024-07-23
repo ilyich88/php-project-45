@@ -3,7 +3,6 @@
 namespace Brain\Games\Games\Prime;
 
 use function Brain\Games\Engine\playGameAndShowResult;
-use function Brain\Games\Engine\showGreetingAndGetName;
 
 use const Brain\Games\Engine\MIN_NUMBER;
 use const Brain\Games\Engine\MAX_NUMBER;
@@ -11,24 +10,23 @@ use const Brain\Games\Engine\MAX_NUMBER;
 function startGamePrime()
 {
     $description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-    $name = showGreetingAndGetName($description);
     $gameFunction = function () {
         $value = random_int(MIN_NUMBER, MAX_NUMBER);
-        $rightAnswer = primeNumberCheck($value) ? 'yes' : 'no';
+        $rightAnswer = isPrime($value) ? 'yes' : 'no';
         return [$value, $rightAnswer];
     };
 
-    playGameAndShowResult($name, $gameFunction);
+    playGameAndShowResult($description, $gameFunction);
 }
 
-function primeNumberCheck(int $number)
+function isPrime(int $number): bool
 {
     if ($number <= 1) {
         return false;
     }
-    $devisor = 2;
-    while (($devisor * $devisor <= $number) && ($number % $devisor !== 0)) {
-        $devisor++;
+    $divisor = 2;
+    while (($divisor * $divisor <= $number) && ($number % $divisor !== 0)) {
+        $divisor++;
     }
-    return ($devisor * $devisor > $number);
+    return ($divisor * $divisor > $number);
 }

@@ -9,18 +9,19 @@ const MIN_NUMBER = 0;
 const MAX_NUMBER = 100;
 const MAX_ROUND = 3;
 
-function showGreetingAndGetName(string $description): string
+function showGreetingAndGetName(): string
 {
     line("Welcome to the Brain Games!");
     $name = prompt('May I have your name?');
     line("Hello, %s!", $name);
-    line($description);
     return $name;
 }
 
-function playGameAndShowResult(string $name, callable $gameFunction)
+function playGameAndShowResult(string $description, callable $gameFunction)
 {
-    for ($roundNum = 0; $roundNum < MAX_ROUND; $roundNum++) {
+    $name = showGreetingAndGetName();
+    line($description);
+    for ($roundNum = 1; $roundNum <= MAX_ROUND; $roundNum++) {
         [$value, $rightAnswer] = $gameFunction();
         line("Question: $value");
         $answer = prompt('Your answer');
@@ -31,6 +32,6 @@ function playGameAndShowResult(string $name, callable $gameFunction)
             \rLet's try again, {$name}!");
             return;
         }
-        line("Congratulations, %s!", $name);
     }
+    line("Congratulations, %s!", $name);
 }
