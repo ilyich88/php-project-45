@@ -34,6 +34,6 @@ function calculateExpression(int $operand1, string $operator, int $operand2): in
         case '*':
             return $operand1 * $operand2;
         default:
-            return 0;
+            throw new \Exception("Unsupported operator: {$operator}");
     }
 }
