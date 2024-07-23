@@ -33,7 +33,5 @@ function calculateExpression(int $operand1, string $operator, int $operand2): in
             return $operand1 - $operand2;
         case '*':
             return $operand1 * $operand2;
-        default:
-            break;
     }
 }
